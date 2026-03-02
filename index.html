@@ -1,10 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SEVRYNX</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding-top: 50px;
+        }
+        h1 { font-size: 50px; margin-bottom: 10px; }
+        p { font-size: 20px; color: gray; margin: 5px; }
+        hr { margin: 30px 0; border-color: gray; }
+        input, button { margin: 10px; }
+        h2 { font-size: 30px; margin-top: 20px; }
+    </style>
+</head>
 <body>
-    <!-- Homepage content (sirf ek baar) -->
+    <!-- Homepage content -->
     <h1>SEVRYNX</h1>
     <p>Control • Network • Safety</p>
     <p>Protecting Your Digital World</p>
 
-    <hr style="margin:30px 0; border-color:gray;">
+    <hr>
 
     <!-- Shield v1 tool -->
     <h2>Sevrynx Shield v1 – Problem Solver</h2>
@@ -20,9 +39,10 @@
             } else if(isNaN(val)) {
                 document.getElementById('result').innerText = "This is not a number!";
             } else {
-                let res = val * 2;
+                let res = val * 2; // simple calculation
                 document.getElementById('result').innerText = "Result: " + res;
             }
         }
     </script>
 </body>
+</html>
