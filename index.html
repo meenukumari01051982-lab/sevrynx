@@ -13,8 +13,27 @@
         h1 { font-size: 50px; margin-bottom: 10px; }
         p { font-size: 20px; color: gray; margin: 5px; }
         hr { margin: 30px 0; border-color: gray; }
-        input, button { margin: 10px; }
-        h2 { font-size: 30px; margin-top: 20px; }
+        input, select, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            text-align: center;
+        }
+        button {
+            background-color: gray;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: white;
+            color: black;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #00ff00; /* result green */
+        }
     </style>
 </head>
 <body>
@@ -25,60 +44,35 @@
 
     <hr>
 
-    <!-- Shield v1 tool -->
+    <!-- Upgraded Shield v1 Tool -->
     <h2>Sevrynx Shield v1 – Problem Solver</h2>
-    <input type="text" id="userInput" placeholder="Type a number" style="padding:10px; width:200px;">
-    <button onclick="solveProblem()" style="padding:10px;">Solve</button>
-    <p id="result" style="margin-top:20px; font-size:18px;"></p>
+    <input type="text" id="userInput" placeholder="Type a number" style="width:150px;">
+    <select id="operation">
+        <option value="double">Double</option>
+        <option value="square">Square</option>
+        <option value="half">Half</option>
+    </select>
+    <button onclick="solveProblem()">Solve</button>
+    <p id="result"></p>
 
     <script>
         function solveProblem() {
             let val = document.getElementById('userInput').value;
+            let op = document.getElementById('operation').value;
+            let resText = "";
+
             if(val === "") {
-                document.getElementById('result').innerText = "Please type something!";
+                resText = "Please type a number!";
             } else if(isNaN(val)) {
-                document.getElementById('result').innerText = "This is not a number!";
+                resText = "This is not a number!";
             } else {
-                let res = val * 2; // simple calculation
-                document.getElementById('result').innerText = "Result: " + res;
+                val = parseFloat(val);
+                if(op === "double") resText = "Result: " + (val*2);
+                else if(op === "square") resText = "Result: " + (val*val);
+                else if(op === "half") resText = "Result: " + (val/2);
             }
+            document.getElementById('result').innerText = resText;
         }
     </script>
 </body>
 </html>
-
-body {
-    background-color: black;
-    color: white;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    padding-top: 50px;
-}
-
-input {
-    padding: 10px;
-    width: 200px;
-    border-radius: 5px;
-    border: 1px solid gray;
-    text-align: center;
-}
-
-button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    background-color: gray;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: white;
-    color: black;
-}
-
-#result {
-    margin-top: 20px;
-    font-size: 20px;
-    color: #00ff00; /* result highlighted green */
-}
