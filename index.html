@@ -1,77 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SEVRYNX</title>
+    <title>SEVRYNX Shield v2 – Python Runner</title>
     <style>
         body {
             background-color: black;
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
-            padding-top: 50px;
+            padding: 50px;
         }
-        h1 { font-size: 50px; margin-bottom: 10px; }
-        p { font-size: 20px; color: gray; margin: 5px; }
-        hr { margin: 30px 0; border-color: gray; }
-        input, select, button {
-            padding: 10px;
-            margin: 10px;
-            border-radius: 5px;
+        h1, h2 { margin-bottom: 10px; }
+        textarea {
+            width: 80%;
+            height: 150px;
+            background-color: #111;
+            color: #0f0;
             border: 1px solid gray;
-            text-align: center;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
         button {
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
             background-color: gray;
             color: white;
             cursor: pointer;
         }
-        button:hover {
-            background-color: white;
-            color: black;
-        }
-        #result {
+        button:hover { background-color: white; color: black; }
+        #output {
+            width: 80%;
+            min-height: 50px;
             margin-top: 20px;
-            font-size: 20px;
-            color: #00ff00; /* result green */
+            padding: 10px;
+            background-color: #111;
+            color: #0f0;
+            border: 1px solid gray;
+            border-radius: 5px;
+            text-align: left;
+            font-family: monospace;
         }
     </style>
 </head>
 <body>
-    <!-- Homepage content -->
-    <h1>SEVRYNX</h1>
-    <p>Control • Network • Safety</p>
-    <p>Protecting Your Digital World</p>
+    <h1>SEVRYNX Shield v2</h1>
+    <p>Type your Python code below:</p>
 
-    <hr>
+    <textarea id="codeArea" placeholder="print('Hello SEVRYNX')"></textarea><br>
+    <button onclick="runPython()">Run Code</button>
 
-    <!-- Upgraded Shield v1 Tool -->
-    <h2>Sevrynx Shield v1 – Problem Solver</h2>
-    <input type="text" id="userInput" placeholder="Type a number" style="width:150px;">
-    <select id="operation">
-        <option value="double">Double</option>
-        <option value="square">Square</option>
-        <option value="half">Half</option>
-    </select>
-    <button onclick="solveProblem()">Solve</button>
-    <p id="result"></p>
+    <div id="output"></div>
 
     <script>
-        function solveProblem() {
-            let val = document.getElementById('userInput').value;
-            let op = document.getElementById('operation').value;
-            let resText = "";
-
-            if(val === "") {
-                resText = "Please type a number!";
-            } else if(isNaN(val)) {
-                resText = "This is not a number!";
-            } else {
-                val = parseFloat(val);
-                if(op === "double") resText = "Result: " + (val*2);
-                else if(op === "square") resText = "Result: " + (val*val);
-                else if(op === "half") resText = "Result: " + (val/2);
+        function runPython() {
+            let code = document.getElementById('codeArea').value;
+            try {
+                // Simple eval for JS demonstration (Python simulation)
+                // For real Python, backend / Brython / Skulpt needed
+                let simulated = code.replace(/print\((.*)\)/g, '$1');
+                document.getElementById('output').innerText = "Output: " + eval(simulated);
+            } catch(e) {
+                document.getElementById('output').innerText = "Error: " + e;
             }
-            document.getElementById('result').innerText = resText;
         }
     </script>
 </body>
